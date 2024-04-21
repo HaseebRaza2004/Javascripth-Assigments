@@ -24,20 +24,20 @@ console.log(name_1)
 console.log(name_1_lower_case)
 
 // Q:4 *Count Specific Character*:
-var char = prompt("enter any characters to count the occurence")
-var charToCheck = prompt("enter any char to check ")
-count = 0;
+// var char = prompt("enter any characters to count the occurence")
+// var charToCheck = prompt("enter any char to check ")
+// count = 0;
 
-for(i=0 ; i<= char.length; i++) {
+// for(i=0 ; i<= char.length; i++) {
     
-    if(char[i] === charToCheck) {
-            count++;
-    }
+//     if(char[i] === charToCheck) {
+//             count++;
+//     }
 
-}
+// }
 
-console.log(char)
-console.log(count);
+// console.log(char)
+// console.log(count);
 
 // Q:5 *Substring Extraction*:
 
@@ -54,19 +54,19 @@ console.log(results);
 
 //  Q6 *Capitalize Each Word*:
 
-const cap = "hello world! ";
-let result = "";
+var userName = "haseeb raza";
+var arr = userName.split(" ");
+console.log(userName);
+console.log(arr);
 
-for (let i = 0; i < cap.length; i++) {
-  if (i === 0 || cap[i - 1] === " ") {
-    result += cap[i].toUpperCase();
-  } else {
-    result += cap[i];
-  }
+for (var i = 0; i < arr.length; i++) {
+  var word = arr[i];
+  arr[i] = word[0].toUpperCase() + word.slice(1);
 }
 
-console.log(result);
-
+console.log(arr);
+var updated = arr.join(" ");
+console.log(updated);
 
 // Q7 *Trim Whitespace*
 
