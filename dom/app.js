@@ -12,7 +12,15 @@
 // Q:2 Word Reverser
 // Ask the user to input a sentence. Reverse the order of words in the sentence and print the reversed sentence.
 
+var sentence1 = document.getElementById("para2")
 
+function reversed() {
+    var words = para2.value
+    var words1 = words.split(" ")
+    var words_reverse = words1.reverse()
+    var answer = words_reverse.join(" ")
+    console.log(answer);
+}
 
 // Q:3 Word Capitalizer:
 // Ask the user to input a sentence. Capitalize the first letter of each word in the sentence and print the modified sentence.
@@ -37,6 +45,21 @@ function seeinfo() {
 
 // Q:4 Word Finder:
 // Ask the user to input a sentence and a word. Check if the word is present in the sentence. If it is, print "Word found", otherwise print "Word not found".
+
+var para4 = document.getElementById("para3")
+var find = document.getElementById("find word")
+
+function ok () {
+    var lower_case_sentence = para4.toUpperCase();
+    var lower_case_word = find.toUpperCase();
+
+    if (lower_case_sentence == lower_case_word) 
+    {console.log("Word Found");
+    } else {
+     console.log('Word Not Found');   
+    }
+    
+}
 
 // Q:5 String Concatenation:
 // Ask the user to input their first name and last name separately. Concatenate the first name and last name together with a space in between and print the full name.
