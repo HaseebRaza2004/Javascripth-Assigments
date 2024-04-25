@@ -53,11 +53,20 @@ function ok () {
     var lower_case_sentence = para4.toUpperCase();
     var lower_case_word = find.toUpperCase();
 
-    if (lower_case_sentence == lower_case_word) 
-    {console.log("Word Found");
-    } else {
-     console.log('Word Not Found');   
+    for (let i = 0; i < lower_case_sentence.length; i++) {
+        if (lower_case_sentence === lower_case_word) {
+            console.log("Word Found");
+        } else {
+            console.log("Word Not Found");
+        }
+        
     }
+
+    // if (lower_case_sentence == lower_case_word) 
+    // {console.log("Word Found");
+    // } else {
+    //  console.log('Word Not Found');   
+    // }
     
 }
 
@@ -70,3 +79,13 @@ var last_name = prompt('Enter last name')
 var full_name = first_name + " " + last_name
 full_name.trim()
 console.log(full_name);
+
+// var first_name = document.getElementById("1name")
+// var last_name = document.getElementById("2name")
+
+// function name() {
+//     // var first_name1 = first_name.value
+//     // var last_name2 = last_name.value
+//     var full_name = first_name1 + " " + last_name2
+//     console.log(full_name);
+// }
