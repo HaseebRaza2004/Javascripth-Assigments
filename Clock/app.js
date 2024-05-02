@@ -22,7 +22,7 @@ setInterval(function(){
 
 var date = document.getElementById("date")
 var day = document.getElementById("day")
-var weekDay = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Friday" , "Saturday"]
+var weekDay = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday"]
 
 setInterval(function(){
     var now = new Date()
