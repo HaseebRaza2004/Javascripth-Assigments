@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-violet-100">
+    <h1 class="text-center font-bold text-4xl text-violet-500 mt-10 mb-5">Day Counter</h1>
+    <p class="text-center font-bold text-2xl text-violet-400 mb-8">Find The Differnce Of Days</p>
+
+    <div class="flex place-items-center flex-col">
+        <div class="mb-6">
+            <p class="font-bold mb-1 text-1xl text-violet-400">Enter Date</p>
+            <input
+                class="w-[500px] rounded-full bg-violet-200 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="" type="date" id="input1" />
+        </div>
+
+        <!-- <div>
+            <p class="font-bold mb-1  text-violet-400">Enter Date</p>
+            <input
+                class="w-[500px] rounded-full bg-violet-200 text-xl border-2 border-purple-500 p-4 placeholder-purple-400 focus:text-violet-950 focus:border-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="" type="date" id="input2" />
+        </div> -->
+
+        <button onclick="ok()"
+            class="w-[90px] mt-6 relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-violet-500 to-violet-300 group-hover:from-violet-300 group-hover:to-violet-200 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-violet-300 dark:focus:ring-violet-500">
+            <span
+                class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Submit
+            </span>
+        </button>
+    </div>
+
+    <div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>Seconds Left :&nbsp;</h1>
+            <span id="seconds" class="text-violet-300"></span>
+        </div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>Minutes Left :&nbsp;</h1>
+            <span id="minutes" class="text-violet-300"></span>
+        </div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>Hours Left :&nbsp;</h1>
+            <span id="hours" class="text-violet-300"></span>
+        </div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>Days Left :&nbsp;</h1>
+            <span id="days" class="text-violet-300"></span>
+        </div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>Months Left :&nbsp;</h1>
+            <span id="months" class="text-violet-300"></span>
+        </div>
+        <div class="font-bold text-2xl text-violet-400 ml-3 flex">
+            <h1>years Left :&nbsp;</h1>
+            <span id="years" class="text-violet-300"></span>
+        </div>
+    </div>
+
+<script src="app.js"></script>
+</body>
+
+</html>
