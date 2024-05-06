@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#F6F5FF]">
+    <div>
+        <!-- heading -->
+        <div class="text-center font-bold text-7xl text-indigo-400">Stop Watch</div>
+
+        <!-- upper boxes and their names -->
+        <div class="flex justify-center mt-10">
+
+            <div>
+                <div id="minutes"
+                    class="w-[100px] h-[100px] border-double border-8 m-5 border-slate-300 hover:border-indigo-300 flex justify-center items-center">
+                    00</div>
+                <h2 class="text-center font-semibold text-indigo-200">Minutes</h2>
+            </div>
+
+            <div>
+                <div id="seconds"
+                    class="w-[100px] h-[100px] border-double border-8 m-5 border-slate-300 hover:border-indigo-300 flex justify-center items-center">
+                    00</div>
+                <h2 class="text-center font-semibold text-indigo-200">Seoconds</h2>
+            </div>
+
+            <div>
+                <div id="miliseconds"
+                    class="w-[100px] h-[100px] border-double border-8 m-5 border-slate-300 hover:border-indigo-300 flex justify-center items-center">
+                    00</div>
+                <h2 class="text-center font-semibold text-indigo-200">Milisec</h2>
+            </div>
+
+        </div>
+
+        <!-- buttons -->
+        <div class="flex justify-center mt-5">
+            <button id="start_btn" onclick="start()" type="button" class="w-[100px] h-[40px] m-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Start</button>
+            <button onclick="stop()" type="button" class="w-[100px] h-[40px] m-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Stop</button>
+            <button onclick="reset()" type="button" class="w-[100px] h-[40px] m-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Reset</button>
+        </div>
+
+
+
+
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
