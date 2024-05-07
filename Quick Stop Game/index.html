@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
         }
-    </style>
+    </script>
 </head>
-<body>
-    <h1>Quick Stop</h1> 
-    <ul>
-        <li>1.You have to click  before 1000</li>
-        <li>2.If number matches your number then you will win.</li>
-        <li>3.If it doesnt match then you are loss.</li>
-    </ul>
-    <h1 id="number">00</h1>
-    <div>
-        <input placeholder="Add Your number" id="user_input" />
-    </div>
-    <h4 id="result">-</h4>
-   <span>
 
-       <button id="start_btn" onclick="start()">start</button>
-       <button onclick="stop()">stop</button>
-   </span>
+<body class="bg-green-50">
+
+    <div class="flex justify-center items-center flex-col">
+        <h1 class="text-center text-6xl font-bold text-green-500 mt-10">Quick Stop Game</h1>
+        <h1 id="number" class="text-4xl font-bold text-green-300 mt-10">00</h1>
+
+        <div class="mt-10">
+            <p class="font-bold mb-1 text-green-300">Enter Number</p>
+            <input
+                class="w-[400px] rounded-full bg-green-100 text-xl border-double border-4 border-green-500 p-4 placeholder-green-400 focus:text-green-500 focus:border-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Add Your Number" type="text" id="user_input" />
+        </div>
+
+        <h4 id="result" class="font-bold text-green-400 mt-10 text-3xl">Stop If You Can !</h4>
+
+
+        <div>
+            <button id="start_btn" onclick="start()"
+                class="m-10 w-[80px] h-[40px] text-green-400 bg-green-100 border-2 border-dotted border-green-500 rounded-md hover:border-solid hover:bg-green-200">Start</button>
+            <button onclick="stop()"
+                class="m-10 w-[80px] h-[40px] text-green-400 bg-green-100 border-2 border-dotted border-green-500 rounded-md hover:border-solid hover:bg-green-200">Stop</button>
+        </div>
+    </div>
     <script src="app.js"></script>
 </body>
+
 </html>

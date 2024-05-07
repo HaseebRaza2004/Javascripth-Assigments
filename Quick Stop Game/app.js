@@ -22,7 +22,7 @@ function start() {
     }, 10);
     start_btn.disabled = true;
   } else {
-    alert("Number to daaldo");
+    alert("Please Add Any Number");
   }
 }
 function stop() {
