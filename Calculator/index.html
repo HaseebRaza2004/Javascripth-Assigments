@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#00ccc2] flex justify-center items-center flex-col">
+
+    <h1 class="text-6xl font-bold text-gray-600 mt-10">Calculator</h1>
+
+    <div class="flex justify-center items-center flex-col m-5">
+        <input type="text" placeholder="&nbsp; Enter Number" id="input1"
+            class="w-[450px] h-[60px] font-medium m-5 border-2 rounded-lg border-double  bg-gradient-to-r from-green-400 to-blue-400 text-center text-gray-500">
+        <input type="text" placeholder="&nbsp; Enter Number" id="input2"
+            class="w-[450px] h-[60px] font-medium m-5 border-2 rounded-lg border-double  bg-gradient-to-r from-green-400 to-blue-400 text-center text-gray-500">
+
+        <span id="result"
+            class="w-[450px] h-[60px] m-5 font-medium border-2 rounded-lg border-double flex justify-center items-center text-2xl bg-gradient-to-r from-green-400 to-blue-400 text-center text-gray-500">
+            -
+        </span>
+
+        <div>
+            <button onclick="calculate('+')"
+                class="m-5 border text-gray-600 rounded-md font-medium text-3xl bg-[#00b3aa] w-[60px] h-[60px] bg-gradient-to-br from-green-400 to-blue-400 hover:bg-gradient-to-br hover:from-blue-400 hover:to-green-400 text-center">+</button>
+            <button onclick="calculate('-')"
+                class="m-5 border text-gray-600 rounded-md font-medium text-3xl bg-[#00b3aa] w-[60px] h-[60px] bg-gradient-to-br from-green-400 to-blue-400 hover:bg-gradient-to-br hover:from-blue-400 hover:to-green-400 text-center">-</button>
+            <button onclick="calculate('x')"
+                class="m-5 border text-gray-600 rounded-md font-medium text-3xl bg-[#00b3aa] w-[60px] h-[60px] bg-gradient-to-br from-green-400 to-blue-400 hover:bg-gradient-to-br hover:from-blue-400 hover:to-green-400 text-center">x</button>
+            <button onclick="calculate('/')"
+                class="m-5 border text-gray-600 rounded-md font-medium text-3xl bg-[#00b3aa] w-[60px] h-[60px] bg-gradient-to-br from-green-400 to-blue-400 hover:bg-gradient-to-br hover:from-blue-400 hover:to-green-400 text-center">/</button>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
