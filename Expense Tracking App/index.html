@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="flex justify-center items-center flex-col">
+    <div>
+        <h1 class="text-6xl font-bold m-10">Finance App</h1>
+
+        <div class="flex justify-center items-center flex-col">
+
+           <input type="text" class="w-[400px] h-[50px] border-2 rounded-lg text-center ">
+
+           <div class="my-5">
+            <button class="w-[80px] h-[50px] mx-10 border-2 rounded-md">Income</button>
+            <button class="w-[80px] h-[50px] mx-10 border-2 rounded-md">Expense</button>
+           </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+  <script src="app.js"></script>
+</body>
+</html>
