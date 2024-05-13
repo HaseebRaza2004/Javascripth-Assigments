@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .even {
+            color: green;
+        }
+
+        .odd {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="center-align">Counter App</h3>
+        <div class="row">
+            <div class="col s6 offset-s3 center-align">
+                <div class="card-panel">
+                    <h5>Counter: <span id="counter" class="even">0</span></h5>
+                    <p id="evenOdd">Even</p>
+                    <button id="increment" class="btn">Increment</button>
+                    <button id="reset" class="btn red">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        let count = 0;
+
+        const counterElement = document.getElementById('counter');
+        const evenOddElement = document.getElementById('evenOdd');
+
+        const updateCounter = () => {
+            counterElement.textContent = count;
+            if (count % 2 === 0) {
+                counterElement.classList.remove('odd');
+                counterElement.classList.add('even');
+                evenOddElement.textContent = 'Even';
+            } else {
+                counterElement.classList.remove('even');
+                counterElement.classList.add('odd');
+                evenOddElement.textContent = 'Odd';
+            }
+        };
+
+        const incrementCounter = () => {
+            count++;
+            updateCounter();
+        };
+
+        const resetCounter = () => {
+            count = 0;
+            updateCounter();
+        };
+
+        document.getElementById('increment').addEventListener('click', incrementCounter);
+        document.getElementById('reset').addEventListener('click', resetCounter);
+    </script>
+</body>
+
+</html>

@@ -1,42 +1,149 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            clifford: '#da373d',
-          }
-        }
-      }
+  <title>Expense and Profit Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
     }
-  </script>
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    input[type="number"] {
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .total {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
 </head>
-<body class="flex justify-center items-center flex-col">
-    <div>
-        <h1 class="text-6xl font-bold m-10">Finance App</h1>
+<body>
+  <div class="container">
+    <h1>Expense and Profit Tracker</h1>
+    <form id="transaction-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      <label for="type">Type:</label>
+      <select id="type" required>
+        <option value="expense">Expense</option>
+        <option value="profit">Profit</option>
+      </select>
+      <label for="amount">Amount ($):</label>
+      <input type="number" id="amount" required>
+      <input type="submit" value="Add Transaction">
+    </form>
+    <h2>Summary</h2>
+    <table id="summary">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Amount ($)</th>
+        </tr>
+      </thead>
+      <tbody id="summary-body">
+        <!-- Summary data will be populated here -->
+      </tbody>
+    </table>
+    <div class="total" id="total"></div>
+  </div>
 
-        <div class="flex justify-center items-center flex-col">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize form and summary elements
+      const transactionForm = document.getElementById('transaction-form');
+      const summaryBody = document.getElementById('summary-body');
+      const totalElement = document.getElementById('total');
 
-           <input type="text" class="w-[400px] h-[50px] border-2 rounded-lg text-center ">
+      // Initialize total variables
+      let totalExpense = 0;
+      let totalProfit = 0;
 
-           <div class="my-5">
-            <button class="w-[80px] h-[50px] mx-10 border-2 rounded-md">Income</button>
-            <button class="w-[80px] h-[50px] mx-10 border-2 rounded-md">Expense</button>
-           </div>
+      // Add event listener to form submission
+      transactionForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        </div>
+        // Get form data
+        const name = document.getElementById('name').value;
+        const type = document.getElementById('type').value;
+        const amount = parseFloat(document.getElementById('amount').value);
 
+        // Update total based on transaction type
+        if (type === 'expense') {
+          totalExpense += amount;
+        } else {
+          totalProfit += amount;
+        }
 
+        // Add transaction to summary table
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+          <td>${name}</td>
+          <td>${type}</td>
+          <td>${amount.toFixed(2)}</td>
+        `;
+        summaryBody.appendChild(newRow);
 
+        // Update total display
+        updateTotal();
+      });
 
-
-
-    </div>
-  <script src="app.js"></script>
+      // Function to update total display
+      function updateTotal() {
+        const total = totalProfit - totalExpense;
+        totalElement.textContent = `Total Profit/Loss: $${total.toFixed(2)}`;
+      }
+    });
+  </script>
 </body>
 </html>
+
