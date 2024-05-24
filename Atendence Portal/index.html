@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendence Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+    <h1 class="text-5xl text-center font-bold m-5">Attendence Sheet</h1>
+
+    <div class="flex">
+
+        <div class="w-1/2 flex justify-center items-center ">
+            <table class="border border-2 border-[black] ml-5 my-5">
+                <!-- headings -->
+
+                <thead>
+                    <tr class="border border-2 border-[black]">
+                        <th class="border border-2 border-[black] p-2">No.</th>
+                        <th class="border border-2 border-[black] p-2">Name</th>
+                        <th class="border border-2 border-[black] p-2">Father Name</th>
+                        <th class="border border-2 border-[black] p-2">Roll No.</th>
+                        <th class="border border-2 border-[black] p-2">Age</th>
+                        <th class="border border-2 border-[black] p-2">Class</th>
+                        <!-- <th class="border border-2 border-[black] p-2">Attendence</th> -->
+                        <!-- <th class="border border-2 border-[black] p-2">Class</th> -->
+                    </tr>
+                </thead>
+
+                <tbody id="user_table"></tbody>
+
+                <!-- <tr class="border border-2 border-[black]">
+                    <th class="border border-2 border-[black] p-2">1</th>
+                    <th class="border border-2 border-[black] p-2">Haseeb raza</th>
+                    <th class="border border-2 border-[black] p-2">Wajib ALi</th>
+                    <th class="border border-2 border-[black] p-2">234048</th>
+                    <th class="border border-2 border-[black] p-2">19</th>
+                    <th class="border border-2 border-[black] p-2">11th</th>
+                </tr> -->
+
+
+            </table>
+        </div>
+
+        <div class="w-1/2">
+            <div class="flex justify-center items-center m-5">
+                <div>
+                    <h1 class="text-2xl font-bold my-2">Total Students : <span id="total_students">20</span></h1>
+                    <h1 class="text-2xl font-bold my-2">Total Present : <span id="total_present">0</span></h1>
+                    <h1 class="text-2xl font-bold my-2">Total Absent : <span id="total_absent">0</span></h1>
+                    <h1 class="text-2xl font-bold my-2">Total Leave : <span id="total_leave">0</span></h1>
+
+                    <button class="border border-2 border-[black] p-2 rounded-md m-2 hover:bg-gray-200"
+                        onclick="btn('Present')">Present</button>
+                    <button class="border border-2 border-[black] p-2 rounded-md m-2 hover:bg-gray-200"
+                        onclick="btn('Absent')">Absent</button>
+                    <button class="border border-2 border-[black] p-2 rounded-md m-2 hover:bg-gray-200"
+                        onclick="btn('Leave')">Leave</button>
+                </div>
+            </div>
+
+            <div class="flex justify-center items-center m-5">
+                <div>
+                    <h1 class="m-5 text-4xl text-center font-bold">Add Students</h1>
+                    <input class="m-2 border border-2 " type="text" placeholder="Name" id="name"><br>
+                    <input class="m-2 border border-2 " type="text" placeholder="Father Name" id="fathername"><br>
+                    <input class="m-2 border border-2 " type="number" placeholder="Roll No" id="rollno"><br>
+                    <input class="m-2 border border-2 " type="number" placeholder="Age" id="age"><br>
+                    <input class="m-2 border border-2 " type="text" placeholder="Class" id="userClass"><br>
+                    <button onclick="addUser()"
+                        class=" border-2 border-[black] p-2 rounded-md m-2 hover:bg-gray-200">Add</button>
+                        
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
