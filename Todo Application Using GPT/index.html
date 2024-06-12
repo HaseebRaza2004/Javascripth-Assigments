@@ -86,6 +86,14 @@
             <div class="fixed bottom-1 rounded-full overflow-hidden bg-white shadow-xl w-[94%] m-8">
                 <input id="input" type="text" name="text" placeholder="Enter text"
                     class="bg-transparent outline-none border-none pl-6 pr-10 py-5 w-full font-sans text-lg font-semibold" />
+                <select id="category"
+                    class="bg-transparent outline-none border-none pl-6 pr-10 py-5 w-full font-sans text-lg font-semibold">
+                    <option value="Homework">Homework</option>
+                    <option value="Exams">Exams</option>
+                    <option value="Projects">Projects</option>
+                    <option value="Extracurricular">Extracurricular Activities</option>
+                    <option value="Personal">Personal</option>
+                </select>
                 <div class="absolute right-2 top-[0.4em]">
                     <button id="addTodo" onclick="submitnotes()"
                         class="w-14 h-14 rounded-full bg-violet-500 group shadow-xl flex items-center justify-center relative overflow-hidden">
@@ -113,161 +121,159 @@
                 <div class="flex justify-between items-center">
                     <h1 class="text-4xl font-bold text-white">History :</h1>
                     <button id="deleteAll" onclick="deleteAllNotes()"
-                        class="inline-flex mr-5 items-center px-4 py-2 bg-red-600 transition ease-in-out delay-75 hover:bg-red-700 text-white text-sm font-medium rounded-md hover:-translate-y-1 hover:scale-110">
-                        <svg stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-5 w-5 mr-2"
-                            xmlns="http://www.w3.org/2000/svg">
+                        class="inline-flex mr-5 items-center px-4 py-2 bg-red-600 hover:bg-red-800 border border-transparent rounded-md font-semibold capitalize text-white tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
                             <path
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+                                d="M3 6h18M6 6v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2">
+                            </path>
                         </svg>
-                        Delete All
+                        Clear All
                     </button>
                 </div>
-
-                <div id="para" class="mt-4">
-                    <!-- User todos will be appended here -->
+                <div class="mb-4">
+                    <label for="filterCategory" class="text-white text-lg font-semibold">Filter by Category:</label>
+                    <select id="filterCategory" onchange="displayNotes()"
+                        class="bg-gray-700 text-white rounded-md pl-2 py-1">
+                        <option value="all">All</option>
+                        <option value="Homework">Homework</option>
+                        <option value="Exams">Exams</option>
+                        <option value="Projects">Projects</option>
+                        <option value="Extracurricular">Extracurricular Activities</option>
+                        <option value="Personal">Personal</option>
+                    </select>
                 </div>
+                <ul id="list" class="mt-4">
+                    <!-- Notes will be appended here -->
+                </ul>
             </div>
         </div>
     </div>
 
     <script>
-        // Select elements
-const input = document.getElementById('input');
-const para = document.getElementById('para');
-const login_container = document.getElementById('login_container');
-const home_container = document.getElementById('home_container');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const user_email = document.getElementById('user_email');
-const specialEmail = "admin@gmail.com";
+        let notes = JSON.parse(localStorage.getItem('notes')) || {};
+        let currentUser = '';
 
-// Login function
-function login_btn() {
-    if (!email.value || !password.value) {
-        return alert("Please add email and password.");
-    }
-    localStorage.setItem("Email", email.value);
-    if (email.value === specialEmail) {
-        console.log('Hello admin');
-    }
-    check_user();
-};
+        function login_btn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-// Check user status
-function check_user() {
-    const storedEmail = localStorage.getItem("Email");
-    if (storedEmail) {
-        login_container.style.display = "none";
-        home_container.style.display = "block";
-        user_email.textContent = storedEmail;
-    } else {
-        login_container.style.display = "block";
-        home_container.style.display = "none";
-    }
-};
+            if (email && password) {
+                currentUser = email;
+                localStorage.setItem('currentUser', currentUser);
+                document.getElementById('user_email').innerText = email;
+                document.getElementById('login_container').classList.add('hidden');
+                document.getElementById('home_container').classList.remove('hidden');
+                displayNotes();
+            }
+        }
 
-// Logout function
-function logout() {
-    localStorage.removeItem('Email');
-    check_user();
-};
+        function logout() {
+            currentUser = '';
+            localStorage.removeItem('currentUser');
+            document.getElementById('login_container').classList.remove('hidden');
+            document.getElementById('home_container').classList.add('hidden');
+        }
 
-// Submit note function
-function submitnotes() {
-    const email = localStorage.getItem("Email");
-    const noteText = input.value.trim();
-    if (!noteText) {
-        return alert('Please enter a note.');
-    }
+        function submitnotes() {
+            const input = document.getElementById('input').value;
+            const category = document.getElementById('category').value;
+            const date = new Date().toLocaleString();
+            if (input) {
+                if (!notes[currentUser]) {
+                    notes[currentUser] = [];
+                }
+                notes[currentUser].push({ text: input, category: category, date: date });
+                localStorage.setItem('notes', JSON.stringify(notes));
+                document.getElementById('input').value = '';
+                displayNotes();
+            }
+        }
 
-    const obj = {
-        email: email,
-        notes: noteText,
-        timestamp: new Date().toISOString()
-    };
+        function displayNotes() {
+            const list = document.getElementById('list');
+            list.innerHTML = '';
+            const filterCategory = document.getElementById('filterCategory').value;
+            const userNotes = (currentUser === 'admin@gmail.com') ? Object.values(notes).flat() : notes[currentUser] || [];
 
-    saveValueInStorage(obj);
-    input.value = "";
-};
+            const filteredNotes = filterCategory === 'all' ? userNotes : userNotes.filter(note => note.category === filterCategory);
 
-// Save note to local storage
-function saveValueInStorage(obj) {
-    let notes = localStorage.getItem('notes');
-    if (notes) {
-        notes = JSON.parse(notes);
-        notes.push(obj);
-    } else {
-        notes = [obj];
-    }
-    localStorage.setItem("notes", JSON.stringify(notes));
-    displayUserNotes();
-};
+            filteredNotes.forEach((note, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'text-white text-lg font-semibold border-b border-gray-700 p-2 flex justify-between items-center';
+                listItem.innerHTML = `
+                    <div>
+                        <span>${note.text}</span> - <span class="italic">${note.category}</span>
+                        <br>
+                        <small>${note.date}</small>
+                    </div>
+                    <div>
+                        <button onclick="editNotePrompt(${index})" class="text-yellow-500 mr-2">Edit</button>
+                        <button onclick="deleteNote(${index})" class="text-red-600">Delete</button>
+                    </div>
+                `;
+                list.appendChild(listItem);
+            });
+        }
 
-// Display user notes
-function displayUserNotes() {
-    let notes = localStorage.getItem("notes");
-    const currentUser = localStorage.getItem("Email");
-    if (notes) {
-        para.innerHTML = "";
-        notes = JSON.parse(notes);
-        notes.forEach((data, ind) => {
-            if (data.email === currentUser) {
-                const date = new Date(data.timestamp);
-                const dateStr = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
-                const newPara = `
-                    <p class="ml-10 mt-3 flex justify-between items-center">
-                        <span class="text-white text-2xl">* ${data.notes}</span> 
-                        <span class="flex items-center justify-center">
-                            <span class="text-white mr-5"> 
-                                ${dateStr}
-                            </span>
-                            <button onclick="edit(${ind})" class="border border-2 rounded-md bg-gray-600 p-2">Edit</button>
-                            <button onclick="deleteLine(${ind})" class="m-2 border border-2 rounded-md bg-red-600 p-2">Delete</button>
-                        </span>
-                    </p>`;
-                para.innerHTML += newPara;
+        function editNotePrompt(index) {
+            const newText = prompt("Enter new text:");
+            if (newText) {
+                if (currentUser === 'admin@gmail.com') {
+                    const allNotes = Object.entries(notes);
+                    let count = 0;
+                    for (let [user, userNotes] of allNotes) {
+                        if (count + userNotes.length > index) {
+                            userNotes[index - count].text = newText;
+                            break;
+                        }
+                        count += userNotes.length;
+                    }
+                } else {
+                    notes[currentUser][index].text = newText;
+                }
+                localStorage.setItem('notes', JSON.stringify(notes));
+                displayNotes();
+            }
+        }
+
+        function deleteNote(index) {
+            if (currentUser === 'admin@gmail.com') {
+                const allNotes = Object.entries(notes);
+                let count = 0;
+                for (let [user, userNotes] of allNotes) {
+                    if (count + userNotes.length > index) {
+                        userNotes.splice(index - count, 1);
+                        break;
+                    }
+                    count += userNotes.length;
+                }
+            } else {
+                notes[currentUser].splice(index, 1);
+            }
+            localStorage.setItem('notes', JSON.stringify(notes));
+            displayNotes();
+        }
+
+        function deleteAllNotes() {
+            if (currentUser === 'admin@gmail.com') {
+                notes = {};
+            } else {
+                delete notes[currentUser];
+            }
+            localStorage.setItem('notes', JSON.stringify(notes));
+            displayNotes();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            currentUser = localStorage.getItem('currentUser') || '';
+            if (currentUser) {
+                document.getElementById('user_email').innerText = currentUser;
+                document.getElementById('login_container').classList.add('hidden');
+                document.getElementById('home_container').classList.remove('hidden');
+                displayNotes();
             }
         });
-    }
-};
-
-// Edit note function
-function edit(index) {
-    let notes = JSON.parse(localStorage.getItem('notes'));
-    const currentUser = localStorage.getItem('Email');
-    if (notes[index].email === currentUser) {
-        const currentValue = notes[index].notes;
-        const updatedValue = prompt('Enter value to edit:', currentValue);
-        if (updatedValue) {
-            notes[index].notes = updatedValue;
-            localStorage.setItem('notes', JSON.stringify(notes));
-            displayUserNotes();
-        }
-    }
-};
-
-// Delete note function
-function deleteLine(index) {
-    let notes = JSON.parse(localStorage.getItem('notes'));
-    const currentUser = localStorage.getItem('Email');
-    if (notes[index].email === currentUser) {
-        notes.splice(index, 1);
-        localStorage.setItem('notes', JSON.stringify(notes));
-        displayUserNotes();
-    }
-};
-
-// Delete all notes function
-function deleteAllNotes() {
-    para.innerHTML = "";
-    localStorage.removeItem('notes');
-};
-
-// Initial function calls
-check_user();
-displayUserNotes();
-
     </script>
 </body>
 
