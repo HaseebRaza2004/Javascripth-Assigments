@@ -7,19 +7,19 @@
     <title>Authentication page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
-      .box1{
+      /* .box1{
         display: "block";
       }
 
       .box2{
         display: "none";
-      }
+      } */
   </style>
 </head>
 
 <body>
 
-    <div id="auth_container" class="box1" >
+    <div id="auth_container" class="box1 block" >
         <!-- Signup Page -->
         <div id="signUpPage" class="hidden">
             <div class="flex justify-center mt-40">
@@ -134,7 +134,7 @@
 
 
     <!-- home page -->
-    <div id="user_container"  class="box2">
+    <div id="user_container"  class="box2 hidden">
         <h1 id="user_email" class="text-4xl text-center font-bold">Hello World</h1>
         <button id="logout_btn" class="bg-blue border border-black rounded-md px-4 py-2">logout</button>
     </div>

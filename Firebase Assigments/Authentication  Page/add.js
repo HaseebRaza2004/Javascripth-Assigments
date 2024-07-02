@@ -38,7 +38,7 @@ const signUpBtn = document.getElementById('signUpBtn');
 const signUpPage = document.getElementById('signUpPage');
 const lignInPage = document.getElementById('lignInPage');
 
-const home_container = document.getElementById('home_container');
+const user_container = document.getElementById('user_container');
 const auth_container = document.getElementById('auth_container');
 
 const signUp_email = document.getElementById('signUp_email');
@@ -59,17 +59,18 @@ logout_btn.addEventListener('click' , logout);
 onAuthStateChanged(auth, (user) => {
     if (user) {
         user_email.innerText = user.email;
-        console.log(user.email);
+        // console.log(user.email);
         auth_container.style.display = "none";
-        home_container.style.display = "block";
+        user_container.style.display = "block";
         const uid = user.uid;
+        // console.log('user login');
     } else {
         // User is signed out
         // ...
         alert('Please! Create Your Account');
        
         auth_container.style.display = 'block';
-        home_container.style.display = 'none';
+        user_container.style.display = 'none';
     };
 });
 
@@ -86,9 +87,6 @@ function createUserAccount() {
             // Signed up 
             const user = userCredential.user;
             // ...
-            alert('Congratulations. \n Account Created Successfully. \n Login Your Account To Enter.');
-            signUpPage.style.display = 'none';
-            lignInPage.style.display = 'block';
         })
         .catch((error) => {
             const errorCode = error.code;
